@@ -1,0 +1,35 @@
+.container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 60rem;
+  height: 30rem;
+  background-color: #7897db;
+
+}
+
+
+
+.inputDiv input{
+  padding: 1rem;
+  margin: auto;
+  width: 90%;
+  height: 5rem;
+  background-color: aliceblue;
+  margin: 2rem;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.btn{
+  text-align: center;
+  margin: auto;
+  width: 15rem;
+  padding: 1rem;
+  margin-top: 2rem;
+  background-color: #dde3f0;
+  color: black;
+  font-size: 2rem;
+  border: 3px solid #2663e7
+}

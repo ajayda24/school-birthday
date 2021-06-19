@@ -1,0 +1,131 @@
+.container {
+  width: 100%;
+  height: 90vh;
+  position: relative;
+}
+.mainDiv {
+  width: 100%;
+  margin: auto;
+  height: 100vh;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    ),
+    url("../public/images/bg1.jpg") no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.content {
+  position: relative;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  width: 100%;
+}
+
+.title {
+  font-family: "Monoton", cursive;
+  text-align: center;
+  font-size: 7rem;
+  color: rgb(0, 0, 0);
+  margin-top: 5rem;
+  font-weight: 500;
+  text-shadow: -1px -1px 0 crimson, 1px -1px 0 crimson, -1px 1px 0 crimson, 1px 1px 0 crimson;
+}
+
+.imageDiv {
+  width: 90%;
+  height: auto;
+  margin: auto;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.image{
+  /* outline: 3px solid crimson !important; */
+  margin: 1rem !important;
+  border: 3px solid rgb(0, 0, 0) !important;
+}
+
+.name {
+  font-family: 'Lobster', cursive;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 4rem;
+  margin-top: 2rem;
+  color: #492455;
+  text-shadow: -0.5px -0.5px 0 black, 0.5px -0.5px 0 black, -0.5px 0.5px 0 black, 0.5px 0.5px 0 black;
+
+}
+
+.school {
+  font-family: 'Righteous', cursive;
+  text-align: center;
+  font-size: 5rem;
+  padding-top: 4rem;
+  color: #fac043;
+  text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+}
+
+.class{
+  font-family: 'Lobster', cursive;
+  text-align: center;
+  font-size: 5rem;
+  margin-top: 2rem;
+  color: crimson;
+  text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+}
+
+.download {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  font-size: 2rem;
+}
+
+/* Computer */
+@media (min-width: 1024px) {
+  .mainDiv {
+    width: 40%;
+  }
+  .title{
+    margin-top: 0rem;
+  }
+  /* .imageDiv{
+    width: 20rem;
+    height: 25rem;
+    margin-top: 3rem;
+  } */
+  .school{
+    margin-top: 1rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 1023px) {
+  .content {
+    height: 70vh;
+  }
+  .title{
+    margin-top: -2rem;
+    font-size: 10rem;
+    padding-top: 15rem;
+  }
+  .name{
+    font-size: 8rem;
+  }
+  .school{
+    font-size: 7rem;
+  }
+}
+
+
+
+
+
