@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 import html2canvas from "html2canvas";
@@ -40,7 +39,7 @@ export default function Home() {
       <div className={styles.container}>
         <div className={styles.mainDiv} id="input">
           <Head>
-            <title>Create Next App</title>
+            <title>BEM Vadakara - Birthday Wishes</title>
             <meta name="description" content="Birthday Wishes" />
             <link rel="icon" href="/favicon.ico" />
             <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -52,7 +51,6 @@ export default function Home() {
               href="https://fonts.googleapis.com/css2?family=Monoton&display=swap"
               rel="stylesheet"
             ></link>
-            <link rel="stylesheet" href="/images/icofont.min.css"></link>
             <link
               href="https://fonts.googleapis.com/css2?family=Righteous&display=swap"
               rel="stylesheet"
@@ -100,10 +98,10 @@ export default function Home() {
         rel="noopener noreferrer"
         download={`birthday_${date}`}
       >
-        <i
-          className="icofont-download"
-          style={{ fontSize: "5rem", color: "crimson" }}
-        ></i>
+        <img
+          src='/images/download.svg'
+          style={{ fontSize: "1rem" }}
+        ></img>
       </a>
     </>
   );
