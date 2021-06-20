@@ -3,7 +3,6 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 import html2canvas from "html2canvas";
-import birthdayList from "../birthday.json";
 
 export default function Home() {
   const [imageUrl, setImageUrl] = useState("");
@@ -21,19 +20,24 @@ export default function Home() {
         setImageUrl(link);
       }, "image/png");
     });
+    
+  }, []);
+  useEffect(async () => {
     const todayDate = new Date()
       .toLocaleDateString("en-GB")
       .split("/")
       .splice(0, 2)
       .join("-");
     setDate(todayDate);
-  }, []);
-  useEffect(() => {
-    if (date) {
-      const todayBirthday = birthdayList.filter((s) => s.date == date);
+    const birthdayListJson = await fetch("/api/birthday");
+    const birthdayListAll = await birthdayListJson.json();
+    if (birthdayListAll) {
+      const todayBirthday = birthdayListAll.data.filter(
+        (s) => s.date == todayDate
+      );
       setBirthday(todayBirthday);
     }
-  }, [date]);
+  }, []);
   return (
     <>
       <div className={styles.container}>

@@ -14,8 +14,13 @@ const handler = (req, res) => {
       date: studentBirthday,
     });
     fs.writeFileSync(filePath, JSON.stringify(birthdayList));
+    res.status(201).json({
+      message: "New Birthday added successfully",
+    });
+  } else if(req.method == "GET"){
     res.status(200).json({
       message: "New Birthday added successfully",
+      data:birthdayList
     });
   }
 };
