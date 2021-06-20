@@ -2,8 +2,18 @@
 import fs from "fs";
 import path from "path";
 
-const filePath = path.join(process.cwd(), "birthday.json");
+const folderPath = path.join(process.cwd(),'public','data')
+const filePath = path.join(process.cwd(),'public',"data", "birthday.json");
+
+if (!fs.existsSync(folderPath)) {
+  fs.mkdirSync(folderPath, {
+    recursive: true,
+  });
+  fs.writeFileSync(filePath, JSON.stringify([]));
+}
+
 const birthdayList = JSON.parse(fs.readFileSync(filePath));
+
 
 const handler = (req, res) => {
   if (req.method == "POST") {
@@ -19,7 +29,7 @@ const handler = (req, res) => {
     });
   } else if(req.method == "GET"){
     res.status(200).json({
-      message: "New Birthday added successfully",
+      message: "All Birthday loaded successfully",
       data:birthdayList
     });
   }
