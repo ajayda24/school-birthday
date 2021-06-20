@@ -5,9 +5,19 @@ import styles from "../styles/Home.module.css";
 import html2canvas from "html2canvas";
 
 export default function Home() {
+  const capitalize = words => {
+    return words
+      .split(' ')
+      .map((word) => {
+        return word[0].toUpperCase() + word.substring(1);
+      })
+      .join(" ");
+  }
+
   const [imageUrl, setImageUrl] = useState("");
   const [date, setDate] = useState();
   const [birthday, setBirthday] = useState([]);
+
   useEffect(async () => {
     html2canvas(document.getElementById("input"), {
       allowTaint: true,
@@ -20,8 +30,7 @@ export default function Home() {
         setImageUrl(link);
       }, "image/png");
     });
-    
-  }, []);
+  }, [birthday]);
   useEffect(async () => {
     const todayDate = new Date()
       .toLocaleDateString("en-GB")
@@ -37,7 +46,7 @@ export default function Home() {
       );
       setBirthday(todayBirthday);
     }
-  }, []);
+  }, [date]);
   return (
     <>
       <div className={styles.container}>
@@ -69,7 +78,7 @@ export default function Home() {
                     <img
                       key={s.id}
                       className={styles.image}
-                      src="/images/sample.png"
+                      src={`/images/students/${s.id}.jpg`}
                       width="120"
                       height="auto"
                     />
@@ -77,7 +86,14 @@ export default function Home() {
                 })}
               </div>
             ) : (
-              <h1 className={styles.name} style={{fontSize:'7rem',paddingTop:'8rem',paddingBottom:'8rem'}}>
+              <h1
+                className={styles.name}
+                style={{
+                  fontSize: "7rem",
+                  paddingTop: "8rem",
+                  paddingBottom: "8rem",
+                }}
+              >
                 No Birthday Today
               </h1>
             )}
@@ -85,7 +101,7 @@ export default function Home() {
               ? birthday.map((s) => {
                   return (
                     <h1 key={s.id} className={styles.name}>
-                      {s.name}
+                      {capitalize(s.name.toLowerCase())}
                     </h1>
                   );
                 })
@@ -102,10 +118,7 @@ export default function Home() {
         rel="noopener noreferrer"
         download={`birthday_${date}`}
       >
-        <img
-          src='/images/download.svg'
-          style={{ fontSize: "1rem" }}
-        ></img>
+        <img src="/images/download.svg" style={{ fontSize: "1rem" }}></img>
       </a>
     </>
   );

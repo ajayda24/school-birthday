@@ -2,8 +2,8 @@
 import fs from "fs";
 import path from "path";
 
-const folderPath = path.join(process.cwd(),'public','data')
-const filePath = path.join(process.cwd(),'public',"data", "birthday.json");
+const folderPath = path.join(process.cwd(),'data')
+const filePath = path.join(process.cwd(),"data", "birthday.json");
 
 if (!fs.existsSync(folderPath)) {
   fs.mkdirSync(folderPath, {

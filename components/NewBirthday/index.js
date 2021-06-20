@@ -30,6 +30,7 @@ const Index = (props) => {
         props.setMessage(data.message);
         nameInput.current.value = "";
         dateInput.current.value = "";
+        document.getElementById('name').focus()
       })
       .catch((err) => {
         console.log(err);
@@ -40,7 +41,7 @@ const Index = (props) => {
     <div className={styles.container}>
       <form onSubmit={addBirthdayHandler} method='POST'>
         <div className={styles.inputDiv}>
-          <input type="text" name="name" id="name" ref={nameInput} autoComplete='off' required />
+          <input type="text" name="name" id="name" ref={nameInput} autoComplete='off' required autoFocus />
         </div>
         <div className={styles.inputDiv}>
           <input type="date" name="date" id="date" ref={dateInput} required />
