@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 
 import html2canvas from "html2canvas";
 
-export default function Home(props) {
+export default function Home() {
   const capitalize = words => {
     return words
       .split(' ')
@@ -55,7 +55,7 @@ export default function Home(props) {
           <Head>
             <title>BEM Vadakara - Birthday Wishes</title>
             <meta name="description" content="BEM Vadakara - Birthday Wishes" />
-            <meta
+            {/* <meta
               property="og:title"
               content={`Happy Birthday ${birthday[0] ? birthday[0].name : 'Student'}`}
             />
@@ -69,7 +69,7 @@ export default function Home(props) {
               content={`/images/students/${
                 birthday[0] ? birthday[0].id : null
               }.jpg`}
-            />
+            /> */}
             <link rel="icon" href="/favicon.ico" />
             <link rel="preconnect" href="https://fonts.gstatic.com" />
             <link
@@ -139,24 +139,3 @@ export default function Home(props) {
     </>
   );
 }
-
-// export async function getServerSideProps(){
-//   const filePath = path.join(process.cwd(), "data", "birthday.json");
-//   const birthdayList = JSON.parse(fs.readFileSync(filePath));
-//   const todayDate = new Date()
-//       .toLocaleDateString("en-GB")
-//       .split("/")
-//       .splice(0, 2)
-//       .join("-");
-//   if (birthdayList) {
-//       const todayBirthday = birthdayList.filter((s) => s.date == todayDate);
-//       return {
-//         props: {
-//           todayBirthday:todayBirthday
-//         },
-//       };
-//     }
-//   return {
-//     props:{}
-//   }
-// }
