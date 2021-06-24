@@ -1,3 +1,6 @@
+import fs from 'fs'
+import path from 'path'
+
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
@@ -138,20 +141,15 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps(){
+  const filePath = path.join(process.cwd(), "data", "birthday.json");
+  const birthdayList = JSON.parse(fs.readFileSync(filePath));
   const todayDate = new Date()
       .toLocaleDateString("en-GB")
       .split("/")
       .splice(0, 2)
       .join("-");
-    
-  const birthdayListJson = await fetch(
-    "https://school-birthday.vercel.app/api/birthday"
-  );
-  const birthdayListAll = await birthdayListJson.json();
-  if (birthdayListAll) {
-      const todayBirthday = birthdayListAll.data.filter(
-        (s) => s.date == todayDate
-      );
+  if (birthdayList) {
+      const todayBirthday = birthdayList.filter((s) => s.date == todayDate);
       return {
         props: {
           todayBirthday:todayBirthday
