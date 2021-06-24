@@ -137,7 +137,7 @@ export default function Home(props) {
   );
 }
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
   const todayDate = new Date()
       .toLocaleDateString("en-GB")
       .split("/")
