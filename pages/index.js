@@ -57,7 +57,7 @@ export default function Home(props) {
             <meta name="description" content="BEM Vadakara - Birthday Wishes" />
             <meta
               property="og:title"
-              content={`Happy Birthday ${birthday[0] ? birthday[0].name : null}`}
+              content={`Happy Birthday ${birthday[0] ? birthday[0].name : 'Student'}`}
             />
             <meta
               property="og:description"
@@ -140,23 +140,23 @@ export default function Home(props) {
   );
 }
 
-export async function getServerSideProps(){
-  const filePath = path.join(process.cwd(), "data", "birthday.json");
-  const birthdayList = JSON.parse(fs.readFileSync(filePath));
-  const todayDate = new Date()
-      .toLocaleDateString("en-GB")
-      .split("/")
-      .splice(0, 2)
-      .join("-");
-  if (birthdayList) {
-      const todayBirthday = birthdayList.filter((s) => s.date == todayDate);
-      return {
-        props: {
-          todayBirthday:todayBirthday
-        },
-      };
-    }
-  return {
-    props:{}
-  }
-}
+// export async function getServerSideProps(){
+//   const filePath = path.join(process.cwd(), "data", "birthday.json");
+//   const birthdayList = JSON.parse(fs.readFileSync(filePath));
+//   const todayDate = new Date()
+//       .toLocaleDateString("en-GB")
+//       .split("/")
+//       .splice(0, 2)
+//       .join("-");
+//   if (birthdayList) {
+//       const todayBirthday = birthdayList.filter((s) => s.date == todayDate);
+//       return {
+//         props: {
+//           todayBirthday:todayBirthday
+//         },
+//       };
+//     }
+//   return {
+//     props:{}
+//   }
+// }
