@@ -1,5 +1,3 @@
-import fs from 'fs'
-import path from 'path'
 
 import { useEffect, useState } from "react";
 import Head from "next/head";
@@ -19,7 +17,7 @@ export default function Home(props) {
 
   const [imageUrl, setImageUrl] = useState("");
   const [date, setDate] = useState();
-  const [birthday, setBirthday] = useState(props.todayBirthday);
+  const [birthday, setBirthday] = useState([]);
 
   useEffect(async () => {
     html2canvas(document.getElementById("input"), {
@@ -41,14 +39,14 @@ export default function Home(props) {
       .splice(0, 2)
       .join("-");
     setDate(todayDate);
-    // const birthdayListJson = await fetch("/api/birthday");
-    // const birthdayListAll = await birthdayListJson.json();
-    // if (birthdayListAll) {
-    //   const todayBirthday = birthdayListAll.data.filter(
-    //     (s) => s.date == todayDate
-    //   );
-    //   setBirthday(todayBirthday);
-    // }
+    const birthdayListJson = await fetch("/api/birthday");
+    const birthdayListAll = await birthdayListJson.json();
+    if (birthdayListAll) {
+      const todayBirthday = birthdayListAll.data.filter(
+        (s) => s.date == todayDate
+      );
+      setBirthday(todayBirthday);
+    }
   }, [date]);
   return (
     <>
@@ -59,7 +57,7 @@ export default function Home(props) {
             <meta name="description" content="BEM Vadakara - Birthday Wishes" />
             <meta
               property="og:title"
-              content={`Happy Birthday ${props.todayBirthday[0].name}`}
+              content={`Happy Birthday ${birthday[0] ? birthday[0].name : null}`}
             />
             <meta
               property="og:description"
@@ -68,7 +66,9 @@ export default function Home(props) {
             <meta property="og:url" content="/" />
             <meta
               property="og:image"
-              content={`/images/students/${props.todayBirthday[0].id}.jpg`}
+              content={`/images/students/${
+                birthday[0] ? birthday[0].id : null
+              }.jpg`}
             />
             <link rel="icon" href="/favicon.ico" />
             <link rel="preconnect" href="https://fonts.gstatic.com" />
