@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 
 import html2canvas from "html2canvas";
 
-export default function Home() {
+export default function Home(props) {
   const capitalize = words => {
     return words
       .split(' ')
@@ -16,7 +16,7 @@ export default function Home() {
 
   const [imageUrl, setImageUrl] = useState("");
   const [date, setDate] = useState();
-  const [birthday, setBirthday] = useState([]);
+  const [birthday, setBirthday] = useState(props.todayBirthday);
 
   useEffect(async () => {
     html2canvas(document.getElementById("input"), {
@@ -38,14 +38,14 @@ export default function Home() {
       .splice(0, 2)
       .join("-");
     setDate(todayDate);
-    const birthdayListJson = await fetch("/api/birthday");
-    const birthdayListAll = await birthdayListJson.json();
-    if (birthdayListAll) {
-      const todayBirthday = birthdayListAll.data.filter(
-        (s) => s.date == todayDate
-      );
-      setBirthday(todayBirthday);
-    }
+    // const birthdayListJson = await fetch("/api/birthday");
+    // const birthdayListAll = await birthdayListJson.json();
+    // if (birthdayListAll) {
+    //   const todayBirthday = birthdayListAll.data.filter(
+    //     (s) => s.date == todayDate
+    //   );
+    //   setBirthday(todayBirthday);
+    // }
   }, [date]);
   return (
     <>
@@ -53,7 +53,20 @@ export default function Home() {
         <div className={styles.mainDiv} id="input">
           <Head>
             <title>BEM Vadakara - Birthday Wishes</title>
-            <meta name="description" content="Birthday Wishes" />
+            <meta name="description" content="BEM Vadakara - Birthday Wishes" />
+            <meta
+              property="og:title"
+              content={`Happy Birthday ${props.todayBirthday[0].name}`}
+            />
+            <meta
+              property="og:description"
+              content="BEM Vadakara Wishes you a Happy Birthday"
+            />
+            <meta property="og:url" content="/" />
+            <meta
+              property="og:image"
+              content={`/images/students/${props.todayBirthday[0].id}.jpg`}
+            />
             <link rel="icon" href="/favicon.ico" />
             <link rel="preconnect" href="https://fonts.gstatic.com" />
             <link
@@ -122,4 +135,30 @@ export default function Home() {
       </a>
     </>
   );
+}
+
+export async function getStaticProps(){
+  const todayDate = new Date()
+      .toLocaleDateString("en-GB")
+      .split("/")
+      .splice(0, 2)
+      .join("-");
+    
+  const birthdayListJson = await fetch(
+    "https://school-birthday.vercel.app/api/birthday"
+  );
+  const birthdayListAll = await birthdayListJson.json();
+  if (birthdayListAll) {
+      const todayBirthday = birthdayListAll.data.filter(
+        (s) => s.date == todayDate
+      );
+      return {
+        props: {
+          todayBirthday:todayBirthday
+        },
+      };
+    }
+  return {
+    props:{}
+  }
 }
