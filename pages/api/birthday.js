@@ -2,28 +2,46 @@
 import fs from "fs";
 import path from "path";
 
-const folderPath = path.join(process.cwd(),'data')
-const filePath = path.join(process.cwd(),"data", "birthday.json");
+import {getData,addData} from '../../firebase'
 
-if (!fs.existsSync(folderPath)) {
-  fs.mkdirSync(folderPath, {
-    recursive: true,
-  });
-  fs.writeFileSync(filePath, JSON.stringify([]));
-}
+// const folderPath = path.join(process.cwd(),'data')
+// const filePath = path.join(process.cwd(),"data", "birthday.json");
 
-const birthdayList = JSON.parse(fs.readFileSync(filePath));
+// if (!fs.existsSync(folderPath)) {
+//   fs.mkdirSync(folderPath, {
+//     recursive: true,
+//   });
+//   fs.writeFileSync(filePath, JSON.stringify([]));
+// }
+
+// const birthdayList = JSON.parse(fs.readFileSync(filePath));
 
 
-const handler = (req, res) => {
+var birthdayList = []
+
+const handler = async (req, res) => {
+  birthdayList = [...await getData()]
+  const lastStudentId = birthdayList
+    .map((d) => d.sId)
+    .sort((a, b) => a - b)
+    .pop();
   if (req.method == "POST") {
-    const { studentName, studentBirthday } = req.body;
-    birthdayList.push({
-      id: birthdayList.length > 0 ?(Number(birthdayList[birthdayList.length - 1].id) + 1).toString() : '1',
+    const {
+      studentName,
+      studentBirthday,
+      studentClass,
+      studentDivision,
+      studentRoll,
+    } = req.body;
+    await addData({
+      id:
+        birthdayList.length > 0 ? (Number(lastStudentId) + 1).toString() : "1",
       name: studentName,
       date: studentBirthday,
+      class: studentClass,
+      division: studentDivision,
+      picId: `${studentClass}-${studentDivision}-${studentRoll}`,
     });
-    fs.writeFileSync(filePath, JSON.stringify(birthdayList));
     res.status(201).json({
       message: "New Birthday added successfully",
     });

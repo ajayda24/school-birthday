@@ -4,22 +4,36 @@
   left: 50%;
   transform: translate(-50%,-50%);
   width: 60rem;
-  height: 30rem;
+  height: 40rem;
   background-color: #7897db;
 
 }
 
+.inputHalfDiv{
+  display: flex;
+  justify-content: space-between;
+}
 
+.inputDiv{
+  width: 100%;
+}
 
 .inputDiv input{
   padding: 1rem;
-  margin: auto;
-  width: 90%;
+  margin: 2rem auto;
   height: 5rem;
   background-color: aliceblue;
-  margin: 2rem;
   text-align: center;
   font-size: 2.5rem;
+  display: block;
+}
+.inputFullElement{
+  width: 90%;
+  margin: 2rem auto;
+  display: block;
+}
+.inputHalfElement{
+  width: 18rem;
 }
 
 .btn{
