@@ -154,5 +154,6 @@ export async function getStaticProps(){
       todayBirthday: todayBirthday,
       todayDate: todayDate,
     },
+    revalidate:43200
   };
 }

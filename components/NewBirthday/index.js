@@ -19,35 +19,52 @@ const Index = (props) => {
     const studentClass = classInput.current.value.toUpperCase();
     const studentDivision = divisionInput.current.value.toUpperCase();
     const studentRoll = rollInput.current.value;
+    const studentImage = e.target.image.files[0];
+    const formData = new FormData();
+    formData.append("file", studentImage);
+    console.log(formData);
       
-
-    fetch("/api/birthday", {
+    fetch("/api/upload", {
       method: "POST",
-      body: JSON.stringify({
-        studentName,
-        studentBirthday,
-        studentClass,
-        studentDivision,
-        studentRoll,
-      }),
-      headers: { "Content-Type": "application/json" },
+      body: formData
     })
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         props.setMessage(data.message);
-        nameInput.current.value = "";
-        dateInput.current.value = "";
-        classInput.current.value = "";
-        divisionInput.current.value = "";
-        rollInput.current.value = "";
-        document.getElementById("name").focus();
       })
       .catch((err) => {
         console.log(err);
         props.setMessage("Something error occured");
       });
+    // fetch("/api/birthday", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     studentName,
+    //     studentBirthday,
+    //     studentClass,
+    //     studentDivision,
+    //     studentRoll,
+    //   }),
+    //   headers: { "Content-Type": "application/json" },
+    // })
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     props.setMessage(data.message);
+    //     nameInput.current.value = "";
+    //     dateInput.current.value = "";
+    //     classInput.current.value = "";
+    //     divisionInput.current.value = "";
+    //     rollInput.current.value = "";
+    //     document.getElementById("name").focus();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     props.setMessage("Something error occured");
+    //   });
   };
   return (
     <div className={styles.container}>
@@ -110,6 +127,20 @@ const Index = (props) => {
               className={styles.inputHalfElement}
             />
           </div>
+        </div>
+        <div className={styles.inputDiv}>
+          <input
+            type="file"
+            accept=".jpg,.jpeg,.png"
+            name="image"
+            id="image"
+            ref={nameInput}
+            autoComplete="off"
+            required
+            autoFocus
+            placeholder="Image"
+            className={styles.inputFullElement}
+          />
         </div>
         <center>
           <button type="submit" className={styles.btn}>
