@@ -141,7 +141,7 @@ export default function Home(props) {
   );
 }
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
   const birthdayList = await getData()
   const todayDate = new Date()
     .toLocaleDateString("en-GB")
@@ -154,6 +154,5 @@ export async function getStaticProps(){
       todayBirthday: todayBirthday,
       todayDate: todayDate,
     },
-    revalidate:43200
   };
 }
