@@ -1,24 +1,26 @@
-.container{
-  position: absolute;
+.container {
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%); */
   width: 60rem;
   height: 45rem;
   background-color: #7897db;
-
+  margin: 3rem auto;
+  padding: 1rem;
+  
 }
 
-.inputHalfDiv{
+.inputHalfDiv {
   display: flex;
   justify-content: space-between;
 }
 
-.inputDiv{
+.inputDiv {
   width: 100%;
 }
 
-.inputDiv input{
+.inputDiv input {
   padding: 1rem;
   margin: 2rem auto;
   height: 5rem;
@@ -27,16 +29,16 @@
   font-size: 2.5rem;
   display: block;
 }
-.inputFullElement{
+.inputFullElement {
   width: 90%;
   margin: 2rem auto;
   display: block;
 }
-.inputHalfElement{
+.inputHalfElement {
   width: 18rem;
 }
 
-.btn{
+.btn {
   text-align: center;
   margin: auto;
   width: 15rem;
@@ -45,5 +47,50 @@
   background-color: #dde3f0;
   color: black;
   font-size: 2rem;
-  border: 3px solid #2663e7
+  border: 3px solid #2663e7;
+}
+
+.tableDiv {
+  width: 80%;
+  font-size: 1.5rem;
+  background-color: #e1e4eb;
+  padding: 1rem;
+  overflow-x: scroll;
+}
+.tableDiv table {
+  width: 80%;
+  font-size: 2rem;
+  border-collapse: collapse;
+}
+.tableDiv table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #010705;
+  color: white;
+}
+.tableDiv table td{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.tableDiv tr:nth-child(even){background-color: #f2f2f2;}
+
+.tableDiv tr:hover {background-color: rgb(182, 214, 240);}
+
+.pageDiv{
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.editContainer{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 60rem;
+  height: 45rem;
+  background-color: rgb(42, 39, 77);
+  margin: 3rem auto;
+  padding: 1rem;
 }

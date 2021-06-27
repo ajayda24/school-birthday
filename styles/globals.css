@@ -54,3 +54,26 @@ a {
     font-size: 50.5%;
   }
 }
+.btn{
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  border-radius: 5px;
+}
+
+.modal-dialog{
+  font-size: 2.5rem;
+  /* width: 60rem; */
+  
+}
+.modal-header{
+  font-size: 1.5rem;
+}
+.modal-content{
+  height: 25rem;
+}
+.h5{
+  font-size: 2rem;
+}
+.close{
+  font-size: 3rem;
+}

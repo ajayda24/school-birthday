@@ -1,8 +1,10 @@
+import Head from 'next/head'
 import { useState, useEffect } from "react";
+import { addData, getData } from "../firebase";
 
 import BirthdayForm from "../components/NewBirthday/index";
 
-const newBirthday = () => {
+const newBirthday = (props) => {
   const [message, setMessage] = useState();
   useEffect(() => {
     setTimeout(() => {
@@ -12,7 +14,6 @@ const newBirthday = () => {
     }, 2000);
   }, [message]);
 
-  
   return (
     <>
       {message && (
@@ -22,7 +23,7 @@ const newBirthday = () => {
             fontSize: "3rem",
             margin: "auto",
             marginTop: "5rem",
-            paddingTop:'2rem',
+            paddingTop: "2rem",
             color: "blue",
             fontWeight: "bold",
             backgroundColor: "#879ed1",
@@ -33,9 +34,18 @@ const newBirthday = () => {
           {message}
         </div>
       )}
-      <BirthdayForm setMessage={setMessage} />
+      <BirthdayForm setMessage={setMessage} fullList={props.birthdayList} />
     </>
   );
 };
 
 export default newBirthday;
+
+export async function getServerSideProps() {
+  const birthdayList = await getData();
+  return {
+    props: {
+      birthdayList: birthdayList,
+    },
+  };
+}

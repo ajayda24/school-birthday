@@ -1,20 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import fs from "fs";
-import path from "path";
-
 import {getData,addData} from '../../firebase'
-
-// const folderPath = path.join(process.cwd(),'data')
-// const filePath = path.join(process.cwd(),"data", "birthday.json");
-
-// if (!fs.existsSync(folderPath)) {
-//   fs.mkdirSync(folderPath, {
-//     recursive: true,
-//   });
-//   fs.writeFileSync(filePath, JSON.stringify([]));
-// }
-
-// const birthdayList = JSON.parse(fs.readFileSync(filePath));
 
 
 var birthdayList = []

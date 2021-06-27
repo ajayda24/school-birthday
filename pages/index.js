@@ -54,10 +54,15 @@ export default function Home(props) {
         <div className={styles.mainDiv} id="input">
           <Head>
             <title>BEM Vadakara - Birthday Wishes</title>
-            <meta name="description" content="BEM Vadakara - Celebrating Students Birthday" />
+            <meta
+              name="description"
+              content="BEM Vadakara - Celebrating Students Birthday"
+            />
             <meta
               property="og:title"
-              content={`Happy Birthday ${birthday[0] ? birthday[0].name : 'Student'}`}
+              content={`Happy Birthday ${
+                birthday[0] ? birthday[0].name : "Student"
+              }`}
             />
             <meta
               property="og:description"
@@ -84,7 +89,7 @@ export default function Home(props) {
               href="https://fonts.googleapis.com/css2?family=Righteous&display=swap"
               rel="stylesheet"
             ></link>
-            
+
           </Head>
           <div className={styles.content}>
             <h1 className={styles.title}>Happy &nbsp; Birthday</h1>
