@@ -1,15 +1,18 @@
-// const firebase = require("./firebase");
+// const firebase = require('./firebase')
+// const cloudinary = require('../cloudinary')
 // const birthdayListJson = require('../data/birthdayNew.json')
 import firebase from "./firebase";
+// import cloudinary from '../cloudinary'
 // import birthdayListJson from '../data/birthdayNew.json'
 
-const db = firebase.firestore();
+const db = firebase.firestore()
+
 
 
 export async function getData() {
-  const birthdays = [];
+  const birthdays = []
   await db
-    .collection("birthday")
+    .collection('birthday')
     .get()
     .then((snapshot) => {
       snapshot.forEach((doc) => {
@@ -22,12 +25,13 @@ export async function getData() {
           division: doc.data().division,
           roll: doc.data().picId.split('-')[2],
           picId: doc.data().picId,
-          imageName:doc.data().imageName || null
-        };
-        birthdays.push(allBirthday);
-      });
-    });
-  return birthdays;
+          imageName: doc.data().imageName || null,
+        }
+        birthdays.push(allBirthday)
+      })
+    })
+
+  return birthdays
 }
 
 export async function addData(data) {
@@ -42,27 +46,29 @@ export async function addData(data) {
   });
   return q;
 }
-export async function editData(docId,data) {
+export async function editData(docId, data) {
   const w = await db.collection('birthday').doc(docId).get()
   try {
-    var imageName = data.imageName;
-    if (!data.imageName) imageName = w.data().imageName;
-    if (!w.data().imageName) imageName = ''
+    if(data){
+      var imageName = data.imageName
+      if (!imageName) imageName = w.data().imageName || 'not added'
       await db
-        .collection("birthday")
+        .collection('birthday')
         .doc(docId)
         .update({
           picId: data.picId || w.data().picId,
           name: data.name || w.data().name,
           class: data.class || w.data().class,
           division: data.division || w.data().division,
-          date: data.date == "Invalid Date" ? w.data().date : data.date,
+          date: data.date == 'Invalid Date' ? w.data().date : data.date,
           imageName: imageName,
-        });
-    return ["Edited student successfully",null];
+        })
+      return ['Edited student successfully', null]
+    }
+    
   } catch (err) {
-    console.log(err);
-    return ["Something went wrong!", err];
+    console.log(err)
+    return ['Something went wrong!', err]
   }
 }
 
@@ -79,6 +85,22 @@ export async function deleteData(docId){
   }
 }
 
+// getData().then((q) => {
+//   // editData()
+//   birthdays.forEach((s) => {
+//     collection.push({
+//       id: s.docId,
+//       imageName: publicIds.find(
+//         (file) =>
+//           file == `school_birthday/${s.class}-${s.division}-${s.roll}`
+//       ),
+//     })
+//   })
+//   collection.forEach(s=>{
+//     // console.log(s.id, { imageName: s.imageName })
+//     editData(s.id, { imageName: s.imageName })
+//   })
+// })
 
 // birthdayListJson.forEach(doc=>{
 //   addData(doc);

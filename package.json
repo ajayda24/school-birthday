@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "cloudinary": "^1.26.1",
+    "cloudinary-react": "^1.7.0",
     "datatables.net": "^1.10.25",
     "datatables.net-dt": "^1.1.0",
     "firebase": "^8.6.8",

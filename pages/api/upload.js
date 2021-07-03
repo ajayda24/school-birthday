@@ -1,3 +1,4 @@
+
 import nextConnect from "next-connect";
 import multer from "multer";
 
@@ -59,7 +60,7 @@ apiRoute.post(async (req, res) => {
       message: "New Birthday added successfully",
     });
   } else if (req.body.action == "edit") {
-    const [msg,err] = await editData(req.body.editId, {
+    const [msg, err] = await editData(req.body.editId, {
       name: name && name.toUpperCase(),
       date: date,
       class: req.body.class && req.body.class.toUpperCase(),
