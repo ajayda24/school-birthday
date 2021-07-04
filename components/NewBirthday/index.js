@@ -272,7 +272,7 @@ const Index = (props) => {
                       <td>{s.sId}</td>
                       <td>{s.roll}</td>
                       <td>{s.name}</td>
-                      <td>{s.date}</td>
+                      <td data-sort='YYYYMMDD'>{s.date}</td>
                       <td>{`${s.class}-${s.division}`}</td>
                       <td>
                         {/* <img
