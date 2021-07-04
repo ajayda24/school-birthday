@@ -100,11 +100,12 @@ export default function Home(props) {
                     <img
                       key={s.sId}
                       className={styles.image}
-                      src={`/images/students/${s.picId}.jpg`}
-                      width="120"
-                      height="auto"
+                      src={s.imageName}
+                      width='120'
+                      height='auto'
+                      alt='Student Image'
                     />
-                  );
+                  )
                 })}
               </div>
             ) : (
