@@ -5,7 +5,7 @@ import styles from './style.module.css'
 
 import 'datatables.net-dt/css/jquery.dataTables.min.css'
 import $ from 'jquery'
-// import 'jquery/dist/jquery'
+// import 'jquery/dist/
 import datatable from 'datatables.net'
 $.DataTable = datatable
 
